@@ -2,15 +2,14 @@
 #include "Slot.h"
 #include <functional>
 #include <vector>
-template <typename T>
 class Signal {
 public:
-    Signal<T>() {};
-    static void connect(Signal<T>& sig, const std::function<void(void)>& func)
+    Signal() {};
+    static void connect(Signal& sig, const std::function<void(void)>& func)
     {
         sig.getSlots().push_back({ func });
     }
-    std::vector<Slot<T>>& getSlots()
+    std::vector<Slot>& getSlots()
     {
         return slots;
     }
@@ -23,5 +22,5 @@ public:
     }
 
 private:
-    std::vector<Slot<T>> slots;
+    std::vector<Slot> slots;
 };

@@ -4,15 +4,15 @@ int main()
 {
     SomeClass y(1);
     SomeClass y2(2);
-    Signal<SomeClass> s;
+    Signal s;
     auto f = [&]() {
         y.doSomething();
     };
     auto f2 = [&]() {
         y2.doSomething();
     };
-    Signal<SomeClass>::connect(s, f);
-    Signal<SomeClass>::connect(s, f2);
+    Signal::connect(s, f);
+    Signal::connect(s, f2);
 
     std::cerr << "\n.....";
     s.emit();
