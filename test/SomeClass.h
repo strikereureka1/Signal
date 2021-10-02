@@ -14,6 +14,11 @@ public:
         std::cerr << "\nCalling the slot with id : " << m_id << "\n";
     }
 
+    void doSomethingMore(const int& i)
+    {
+        std::cerr << "\nCalling the slot with id : " << m_id << " and value " << i;
+    }
+
 private:
     int m_id;
 };
