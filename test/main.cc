@@ -7,7 +7,7 @@ int main()
     Signal<SomeClass> s;
 
     Signal<SomeClass>::connect(s, &y, &SomeClass::doSomething);
-    Signal<SomeClass>::connect(s, &y, &SomeClass::doSomething);
+    Signal<SomeClass>::connect(s, &y2, &SomeClass::doSomething);
 
     std::cerr << "\n.....";
     s.emit();
@@ -15,8 +15,7 @@ int main()
 
     Signal1<SomeClass, int> s1;
     Signal1<SomeClass, int>::connect(s1, &y, &SomeClass::doSomethingMore);
-    Signal1<SomeClass, int> s2;
-    Signal1<SomeClass, int>::connect(s2, &y2, &SomeClass::doSomethingMore);
+    Signal1<SomeClass, int>::connect(s1, &y2, &SomeClass::doSomethingMore);
 
     std::cerr << "\n.....";
     s1.emit(10);
