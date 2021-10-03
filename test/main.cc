@@ -19,8 +19,6 @@ int main()
 
     std::cerr << "\n.....";
     s1.emit(10);
-    s1.emit(100);
-
     std::cerr << "\n.....";
     return 0;
 }

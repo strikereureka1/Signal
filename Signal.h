@@ -19,8 +19,9 @@ public:
     void emit()
     {
         for (const auto& slot : slots) {
-            auto fut = std::async(std::launch::async, slot.m_func);
-            fut.get();
+            auto fn = [=]() { slot.m_func(); };
+            std::thread t(fn);
+            t.detach();
         }
     }
 
@@ -43,8 +44,9 @@ public:
     void emit(const Arg& arg)
     {
         for (const auto& slot : slots) {
-            auto fut = std::async(std::launch::async, slot.m_func, arg);
-            fut.get();
+            auto fn = [=]() { slot.m_func(arg); };
+            std::thread t(fn);
+            t.detach();
         }
     }
 
