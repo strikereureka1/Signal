@@ -1,24 +1,24 @@
 #include "Signal.h"
 #include "SomeClass.h"
+#include <unistd.h>
+
 int main()
 {
     SomeClass y(1);
     SomeClass y2(2);
-    Signal<SomeClass> s;
 
-    Signal<SomeClass>::connect(s, &y, &SomeClass::doSomething);
-    Signal<SomeClass>::connect(s, &y2, &SomeClass::doSomething);
+    // Timeout t(10, true); // 10 second timeout  singleshot
+    // Connect(t, timeout, y, SomeClass::listen);
+    // t.start();
 
-    std::cerr << "\n.....";
-    s.emit();
-    std::cerr << "\n.....";
+    Timeout t(10, false); // 10 second timeout, not singleshot
+    Connect(t, timeoutWithData, y2, SomeClass::listenMore);
+    t.start();
 
-    Signal1<SomeClass, int> s1;
-    Signal1<SomeClass, int>::connect(s1, &y, &SomeClass::doSomethingMore);
-    Signal1<SomeClass, int>::connect(s1, &y2, &SomeClass::doSomethingMore);
-
-    std::cerr << "\n.....";
-    s1.emit(10);
-    std::cerr << "\n.....";
+    while (1)
+    {
+        std::cerr << "\n.....";
+        sleep(2);
+    }
     return 0;
 }

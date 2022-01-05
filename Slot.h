@@ -2,25 +2,32 @@
 #include <functional>
 
 template <class T>
-class Slot {
+class Slot
+{
 public:
-    Slot(T* obj, void (T::*func)(void))
-        : m_obj(obj)
-        , m_func(std::bind(func, obj))
+    Slot(T *obj, void (T::*func)(void))
+        : m_obj(obj), m_func(std::bind(func, obj))
     {
     }
-    T* m_obj;
+    T *m_obj;
     std::function<void(void)> m_func;
 };
 
-template <class T, class Arg>
-class Slot1 {
+class Slot0
+{
+    virtual ~Slot0();
+};
+
+template <class T, class F>
+class Slot1 : public Slot0
+{
+    using M_Fun = F;
+
 public:
-    Slot1(T* obj, void (T::*func)(const Arg& arg))
-        : m_obj(obj)
-        , m_func(std::bind(func, obj, std::placeholders::_1))
+    Slot1(T *obj, F func)
+        : m_obj(obj), m_func(func)
     {
     }
-    std::function<void(const Arg&)> m_func;
-    T* m_obj;
+    M_Fun m_func;
+    T *m_obj;
 };
