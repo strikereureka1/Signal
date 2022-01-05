@@ -2,6 +2,7 @@
 #include <functional>
 #include <list>
 #include <thread>
+#include <mutex>
 #define Connect(a, signal, b, slot) a.signal.connect(&b, &slot)
 #define Disconnect(a, signal, b, slot) a.signal.disconnect(&b, &slot)
 
