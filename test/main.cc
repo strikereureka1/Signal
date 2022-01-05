@@ -12,7 +12,7 @@ int main()
     // t.start();
 
     Timeout t(10, false); // 10 second timeout, not singleshot
-    Connect(t, timeoutWithData, y2, SomeClass::listenMore);
+    Connect(t, Timeout::timeoutWithData, y2, SomeClass::listenMore);
     t.start();
 
     while (1)
