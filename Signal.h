@@ -33,11 +33,11 @@ public:
     {
     }
     virtual ~Slot(){};
-    void emit()
+    void emit() override
     {
         (m_t->*m_f)();
     }
-    std::any get() const
+    std::any get() const override
     {
         return std::make_any<T *>(m_t);
     }
@@ -56,11 +56,11 @@ public:
     {
     }
     virtual ~SlotL0(){};
-    void emit()
+    void emit() override
     {
         (m_f)();
     }
-    std::any get() const
+    std::any get() const override
     {
         return std::string(typeid(m_f).name());
     }
@@ -90,11 +90,11 @@ public:
     {
     }
     virtual ~Slot1(){};
-    void emit(Arg arg)
+    void emit(Arg arg) override
     {
         (m_t->*m_f)(arg);
     }
-    std::any get() const
+    std::any get() const override
     {
         return std::make_any<T *>(m_t);
     }
@@ -113,11 +113,11 @@ public:
     {
     }
     virtual ~SlotL(){};
-    void emit(Arg arg)
+    void emit(Arg arg) override
     {
         (m_f)(arg);
     }
-    std::any get() const
+    std::any get() const override
     {
         return std::string(typeid(m_f).name());
     }
