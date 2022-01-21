@@ -32,7 +32,12 @@ public:
         : m_t(t), m_f(f)
     {
     }
-    virtual ~Slot(){};
+    virtual ~Slot() = default;
+    Slot(const Slot &) = default;
+    Slot(Slot &&) = default;
+    Slot &operator=(const Slot &) = default;
+    Slot &operator=(Slot &&) = default;
+
     void emit() override
     {
         (m_t->*m_f)();
@@ -55,7 +60,12 @@ public:
         : m_f(f)
     {
     }
-    virtual ~SlotL0(){};
+    virtual ~SlotL0() = default;
+    SlotL0(const SlotL0 &) = default;
+    SlotL0(SlotL0 &&) = default;
+    SlotL0 &operator=(const SlotL0 &) = default;
+    SlotL0 &operator=(SlotL0 &&) = default;
+
     void emit() override
     {
         (m_f)();
@@ -89,7 +99,12 @@ public:
         : m_t(t), m_f(f)
     {
     }
-    virtual ~Slot1(){};
+    virtual ~Slot1() = default;
+    Slot1(const Slot1 &) = default;
+    Slot1(Slot1 &&) = default;
+    Slot1 &operator=(const Slot1 &) = default;
+    Slot1 &operator=(Slot1 &&) = default;
+
     void emit(Arg arg) override
     {
         (m_t->*m_f)(arg);
@@ -105,14 +120,19 @@ private:
 };
 
 template <class F, class Arg>
-class SlotL : public Slot1_<Arg>
+class SlotL1 : public Slot1_<Arg>
 {
 public:
-    SlotL(const F &f)
+    SlotL1(const F &f)
         : m_f(f)
     {
     }
-    virtual ~SlotL(){};
+    virtual ~SlotL1() = default;
+    SlotL1(const SlotL1 &) = default;
+    SlotL1(SlotL1 &&) = default;
+    SlotL1 &operator=(const SlotL1 &) = default;
+    SlotL1 &operator=(SlotL1 &&) = default;
+
     void emit(Arg arg) override
     {
         (m_f)(arg);
@@ -215,7 +235,7 @@ public:
     void connect(const F &f)
     {
         std::lock_guard lock(mutex);
-        slots.emplace_back(new SlotL<F, Arg>(f));
+        slots.emplace_back(new SlotL1<F, Arg>(f));
     }
     template <class T, class F>
     void disconnect(T *t, const F &f)
