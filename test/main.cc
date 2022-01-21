@@ -11,7 +11,7 @@ int main()
     // Connect(t, timeout, y, SomeClass::listen);
     // t.start();
 
-    Timeout t(1, false);// 10 second timeout, not singleshot
+    Timeout t(1, false); // 10 second timeout, not singleshot
     Connect(t, Timeout::timeoutWithData, y2, SomeClass::listenMore);
     Connect(t, Timeout::timeoutWithData, y, SomeClass::listenMore);
     /*
