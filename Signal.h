@@ -16,9 +16,9 @@
 class Slot_
 {
 public:
-    Slot_(){};
+    Slot_() = default;
     virtual void emit() = 0;
-    virtual ~Slot_(){};
+    virtual ~Slot_() = default;
     virtual std::any get() const = 0;
 
 private:
