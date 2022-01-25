@@ -21,8 +21,8 @@ public:
                          { run(); });
         th.detach();
     }
-    Signal timeout;
-    Signal1<std::string> timeoutWithData;
+    JSig::Signal timeout;
+    JSig::Signal1<std::string> timeoutWithData;
 
 private:
     void run()
@@ -64,11 +64,11 @@ public:
         m_id += 5;
         std::cerr << "\nLISTEN: " << data << " " << m_id << "\n";
     }
-    Signal s;
-    Signal1<int> &getS1() { return s1; }
+    JSig::Signal s;
+    JSig::Signal1<int> &getS1() { return s1; }
 
 private:
     int m_id;
-    Signal1<int> s1;
+    JSig::Signal1<int> s1;
     std::mutex m;
 };
